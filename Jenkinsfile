@@ -1,13 +1,13 @@
 pipeline{
    agent any 
    stages {
-       stage ('Build Servlet Project')
-	   {	   
-      steps {
+      stage ('Build Servlet Project')
+	 {	   
+          steps {
 	  
 	    sh  'mvn clean package'
 		    
-	  }
+	        }
 	  
 	  post{
 	  
@@ -15,10 +15,19 @@ pipeline{
                echo "archiving artifact..."
                 archiveArtifacts artifacts :'**/*.jar'			   
 		
-		        }
-	    }
-     }
+		    }
+	       }
+         }
    
-   }  
+    stage ('Build to staging ENV')
+       {
+      steps {
+           build job: Deploy_maven_proj_Tomact
+            }
+      }
+      
+
+   } 
+ 
 }
 
