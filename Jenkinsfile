@@ -13,7 +13,7 @@ pipeline{
 	  
 	    success {
                echo "archiving artifact..."
-                archiveArtifacts artifacts :'**/*.war'			   
+                archiveArtifacts artifacts :'**/*.jar'			   
 		
 		        }
 	    }
