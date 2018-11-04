@@ -1,22 +1,24 @@
 pipeline{
-   agent any
-         
-           stages{
-
-                stage('clean'){
-                    steps { 
-                    echo "Clean completed"
-                         }
-                              }
-               
-                stage('build'){
-                    steps {
-                    echo "Build completed"
-                         }
-                              }
-
-              
-          }
-
-
+   agent any 
+   stages {
+       stage ('Build Servlet Project')
+	   {	   
+      steps {
+	  
+	    sh  'mvn clean package'
+		    
+	  }
+	  
+	  post{
+	  
+	    success {
+               echo "archiving artifact..."
+                archiveArtifacts artifacts :'**/*.war'			   
+		
+		        }
+	    }
+     }
+   
+   }  
 }
+
