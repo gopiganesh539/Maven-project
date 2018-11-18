@@ -1,0 +1,11 @@
+---
+- hosts: web
+  #become: yes
+  gather_facts: false
+  tasks:
+    - name: This same job for deploy the application using ansible tower
+      copy:
+        src:  /vagrant/file1.txt
+        dest: /tmp/file1.txt
+
+

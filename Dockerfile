@@ -1,0 +1,3 @@
+FROM tomact 
+
+ADD ./webapps/
